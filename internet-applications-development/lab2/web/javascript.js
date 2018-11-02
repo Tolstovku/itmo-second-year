@@ -97,31 +97,6 @@ function validateX() {
     }
 }
 
-/*function validateY() {
-    let y = form.elements["y-input"].value;
-    if (!isNaN(y)) {
-        removeErrorY();
-        return true;
-    } else {
-        event.preventDefault();
-        showErrorY()
-        return false;
-    }
-}
-*/
-
-/*function validateR() {
-    let r = form.elements["r-buttons"].value;
-    if (!isNaN(r) && !(r == "")) {
-        removeErrorR();
-        return true;
-    } else {
-        event.preventDefault();
-        showErrorR();
-        return false;
-    }
-}*/
-
 
 /* --------- Show Errors ---------------------------*/
 function showErrorX() {
@@ -144,36 +119,8 @@ function showErrorR() {
         errorSpan.classList.add("error-span");
         errorSpan.innerHTML = "<br>Выберите R";
         canvasFrameBlock.appendChild(errorSpan);
-        // form.elements["y-input"].classList.add("error-input");
     }
 }
-/*function showErrorY() {
-    let yInput = document.getElementById("y-block");
-    let ySelect = document.getElementById("y-input");
-    if (!yInput.contains(document.getElementById("y-error"))) {
-        let errorSpan = document.createElement("span");
-        errorSpan.id = "y-error";
-        errorSpan.classList.add("error-span");
-        errorSpan.innerHTML = "<br>Выберите значение Y";
-        yInput.appendChild(errorSpan);
-        ySelect.classList.add("y-error")
-    }
-}
-*/
-
-/*
-function showErrorR() {
-    let rInput = document.getElementById("r-block");
-    if (!rInput.contains(document.getElementById("r-error"))) {
-        let errorSpan = document.createElement("span");
-        errorSpan.id = "r-error";
-        errorSpan.classList.add("error-span");
-        errorSpan.innerHTML = "Выберите значение R";
-        rInput.appendChild(errorSpan);
-    }
-}
-*/
-
 
 /* --------- Remove Errors ---------------------------*/
 function removeErrorX() {
@@ -190,38 +137,15 @@ function removeErrorR() {
     let canvasFrameBlock = document.getElementById("canvas-frame");
     if (canvasFrameBlock.contains(document.getElementById("no-r"))) {
         canvasFrameBlock.removeChild(document.getElementById("no-r"));
-        // form.elements["y-input"].classList.remove("error-input");
     }
 
 
 }
 
-/*function removeErrorY() {
-    let yInput = document.getElementById("y-block");
-    let ySelect = document.getElementById("y-input");
-    if (yInput.contains(document.getElementById("y-error"))) {
-        yInput.removeChild(document.getElementById("y-error"));
-        ySelect.classList.remove("y-error")
-    }
-}
-*/
-
-/*
-function removeErrorR() {
-    let rInput = document.getElementById("r-block");
-    if (rInput.contains(document.getElementById("r-error"))) {
-        rInput.removeChild(document.getElementById("r-error"));
-    }
-
-}
-*/
 function getSessionData() {
     fetch("ControllerServlet?getSession=true", {
         credentials: "include",
     }).then(function (response) {
-        // response.text().then(function (text) {
-        //     alert(text);
-        // });
         response.json().then(function (sessionRows) {
             if (sessionRows.length > 0) {
                 createTable();
@@ -234,10 +158,6 @@ function getSessionData() {
     });
 }
 
-// drawCanvas now will work with dots array and draw a dot for every object in dots array
-// but we leave r as a parameter
-// pointer x will be declared later
-// for() for dots
 function drawCanvas(canvas, r) {
     if (canvas.getContext) {
         var context = canvas.getContext("2d");
@@ -256,6 +176,7 @@ function drawCanvas(canvas, r) {
 
         context.strokeStyle = "black";
         context.fillStyle = "black";
+
         //Create grid
         {
             context.beginPath();
@@ -341,10 +262,6 @@ function drawCanvas(canvas, r) {
 
             context.beginPath();
             context.arc(half_width + pointer_x, half_height - pointer_y, 1, 2 * Math.PI, 0);
-            // context.moveTo(half_width + pointer_x - 1, half_height - pointer_y);
-            // context.lineTo(half_width + pointer_x + 2, half_height - pointer_y);
-            // context.moveTo(half_width + pointer_x, half_height - pointer_y - 1);
-            // context.lineTo(half_width + pointer_x, half_height - pointer_y + 2);
             context.closePath();
             context.fill();
             context.stroke();
@@ -385,9 +302,6 @@ function sendClickCoors(formData, click) {
         body: formJson,
     })
         .then(function (response) {
-            // response.text().then(function (text) {
-            //     alert(text);
-            // });
             response.json().then(function (responseArray) {
                 createTable();
                 insertRow(responseArray);
@@ -399,4 +313,7 @@ function sendClickCoors(formData, click) {
         })
 }
 
+document.querySelectorAll(".fuck").forEach(function (a) {
+    alert("fuck");
+})
 

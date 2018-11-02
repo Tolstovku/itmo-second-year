@@ -49,12 +49,6 @@ public class ControllerServlet extends HttpServlet {
             RequestDispatcher dispatcher = req.getRequestDispatcher("/AreaCheckServlet");
             dispatcher.forward(req, resp);
         }
-        else {
-            /* Придумать что нибудь с этим*/
-//            req.setAttribute("ErrorMsg", "Invalid data");
-//            RequestDispatcher dispatcher = req.getRequestDispatcher("index.jsp");
-//            dispatcher.forward(req, resp);
-        }
     }
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
